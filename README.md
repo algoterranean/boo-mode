@@ -1,7 +1,6 @@
 
- 0. Overview and license
- =====================================================================
-
+Overview and license
+ 
  This is an emacs major mode for the Boo programming language. 
  For more info on boo, see http://boo.codehaus.org.
  
@@ -27,7 +26,9 @@
  want to define the autoload stuff. For example:
 
  ```(setq boo-custom-macros '("client" "server"))
+ 
  (require 'boo-mode)
+ 
  (setq auto-mode-alist (append '(("\\.boo$" . boo-mode)) auto-mode-alist)) ```
 
  
