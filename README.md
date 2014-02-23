@@ -1,7 +1,5 @@
 
-Overview and license
- 
- This is an emacs major mode for the Boo programming language. 
+  This is an emacs major mode for the Boo programming language. 
  For more info on boo, see http://boo.codehaus.org.
  
  "Boo is an object oriented statically typed language for .NET and Mono
@@ -25,25 +23,26 @@ Overview and license
  You may, of course, hook into the boo-mode hook if you wish, and you will
  want to define the autoload stuff. For example:
 
- ```(setq boo-custom-macros '("client" "server"))
+ ```(setq boo-custom-macros '("client" "server"))```
  
- (require 'boo-mode)
- 
- (setq auto-mode-alist (append '(("\\.boo$" . boo-mode)) auto-mode-alist)) ```
+ ```(require 'boo-mode)```
+
+```(setq auto-mode-alist (append '(("\\.boo$" . boo-mode)) auto-mode-alist)) ```
 
  
  CUSTOMIZATION:
 
- - The faces are exposed if you wish to customize them.
+
+* The faces are exposed if you wish to customize them.
  
- - You can define your own keywords that need syntax highlighting and 
+* You can define your own keywords that need syntax highlighting and 
    indentation (read: your custom macros!). HOWEVER you will need to 
    define the boo-custom-macro variable BEFORE you load this mode. 
    This is due to some rather hackish macro expansion stuff that 
    has been derived from python.el. 
        
 
- TODO: 
+TODO: 
  
  - Improve and finalize syntax highlighting. 
    - In particular, Attributes.
@@ -55,10 +54,9 @@ Overview and license
  - Unity-specific support? 
 
 
- HISTORY AND VERSION NOTES:
+HISTORY AND VERSION NOTES:
 
  v0.1, Feb 2014: Initial release, so, yeah. Don't expect shit to work much.
-
 
 
 
