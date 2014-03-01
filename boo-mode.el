@@ -221,7 +221,7 @@ This needs to be defined before the mode has started due to the macro expansion 
 (defvar boo-font-lock-keywords
   (let ((kw1 (mapconcat 'identity  ;; KEYWORDS
 			'( ;; declarations
-			  "interface" "struct" "enum" "class" "def"
+			  "interface" "struct" "enum" "class" "def" "macro"
 			  ;; namespaces
 			  "import" "from" "namespace"
 			  ;; class modifiers
@@ -270,9 +270,6 @@ This needs to be defined before the mode has started due to the macro expansion 
      ;; builtins when they don't appear as object attributes
      (list (concat "\\([^. \t]\\|^\\)[ \t]*\\<\\(" kw2 "\\)\\>") 
 	   2 boo-builtin-face)
-     ;; macros
-     (list (concat "[ \t]+\\(" kw4 "\\)[ :]+")
-	   1 boo-macro-face)
      ;; native types
      (list (concat "\\<\\(" kw3 "\\)\\>") 
 	   1 boo-native-type-face)
@@ -288,8 +285,11 @@ This needs to be defined before the mode has started due to the macro expansion 
      (list (concat "\\(array\\|matrix\\)(\\(" boo-valid-name-regexp "+\\),") 
 	   2 boo-type-face)
      ;; declaration names
-     '("\\<\\(def\\|class\\|interface\\|struct\\|enum\\|callable\\)[ \t]+\\([a-zA-Z_]+[a-zA-Z0-9_]*\\)" 
+     '("\\<\\(def\\|class\\|interface\\|struct\\|enum\\|callable\\|macro\\)[ \t]+\\([a-zA-Z_]+[a-zA-Z0-9_]*\\)" 
        2 boo-function-face)
+     ;; macros
+     (list (concat "[ \t]+\\(" kw4 "\\)[ :]+")
+	   1 boo-macro-face)
      ;; string interpolation
      '("\$[({]*\\([a-zA-Z0-9_+-\\[]+\\]*\\)[})]*" 
        1 font-lock-preprocessor-face t)
@@ -352,7 +352,7 @@ This needs to be defined before the mode has started due to the macro expansion 
 
 
 (defvar boo-default-block-start-keywords
-  '("class" "def" "if" "elif" "else" "try" "except" "ensure" "for" "while" "interface" "struct" "enum" "unless" "set" "get"))
+  '("class" "def" "if" "elif" "else" "try" "except" "ensure" "for" "while" "interface" "struct" "enum" "unless" "set" "get" "macro"))
 
 (defvar boo-block-start-regexp
   (concat "\\_<\\(?:\\(?:"
