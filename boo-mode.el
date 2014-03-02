@@ -288,7 +288,7 @@ This needs to be defined before the mode has started due to the macro expansion 
      '("\\<\\(def\\|class\\|interface\\|struct\\|enum\\|callable\\|macro\\)[ \t]+\\([a-zA-Z_]+[a-zA-Z0-9_]*\\)" 
        2 boo-function-face)
      ;; macros
-     (list (concat "[ \t]+\\(" kw4 "\\)[ :]+")
+     (list (concat "[ \t]*\\(" kw4 "\\)[ :]+")
 	   1 boo-macro-face)
      ;; string interpolation
      '("\$[({]*\\([a-zA-Z0-9_+-\\[]+\\]*\\)[})]*" 
