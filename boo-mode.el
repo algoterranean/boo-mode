@@ -339,6 +339,11 @@ This needs to be defined before the mode has started due to the macro expansion 
 
      ;; add attribute support
      
+     ;; assembly attributes
+     (list (concat "^\\[\\(assembly\\):")
+	   1 boo-decorators-face)
+     (list (concat "^\\[assembly:[ ]*\\(" boo-valid-name-regexp "\\)\\]$")
+	   1 boo-type-face)
      
      )
 ))
