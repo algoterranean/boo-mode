@@ -2,7 +2,9 @@ namespace ExampleSyntax
 
 import System as S
 import System.Drawing from System.Drawing as SD
-# from System.XML import * 
+from System.XML import * 
+
+
 import System.Collections.Generic
 import System.Linq
 import Boo.Lang.Compiler
@@ -28,6 +30,8 @@ struct Point:
 	x as single
 	y as single
 	food as Yum
+
+	# TODO should constructor be highlighted in function face?
 	def constructor(_x as int, _y as int):
 		x = _x
 		y = _y
@@ -35,9 +39,12 @@ struct Point:
 
 
 macro PewPewPew:
+# TODO indentation for doc string is not correct
 """print each statement in the body three times"""
 	for statement in PewPewPew.Body.Statements:
+		# TODO: Ast.ExpressionStatement should be highlighted in type face
 		s = cast(Ast.ExpressionStatement, statement).Expression as Ast.StringLiteralExpression
+		# TODO all string interpolation should be in the same face (as s.Value)
 		yield [| print "$(s.Value * 3)" |]
 
 
@@ -99,13 +106,12 @@ do eiusmod tempor incididunt ut labore et dolore magna aliqua."""
 
 a = AThing()
 print a.FavoriteCat
-# a.FavoriteCat = "socks the wonder cat"
-# print a.FavoriteCat
 a.Meow(null)
 print Node(Name: "something")
 
 
 # duck typing
+# TODO highlight duck in type face?
 m as duck = AThing()
 print m.FavoriteCat
 
@@ -118,7 +124,7 @@ print q
 
 
 # linq
-ints as int* = (of int: 1,2,3,1,2,3)
+ints as int* = (of int: 1,2,3,1,2,3)  # TODO: int* should all be the same color for the type
 print join(ints.Select({i as int | i.ToString("00")}))
 print ints.Aggregate({i, j | i + j})
 
@@ -163,6 +169,7 @@ print char(52)
 
 
 i = 0
+# TODO highlist checked/unchecked in macro face
 unchecked:
 	k = i + 1
 checked:
@@ -218,6 +225,7 @@ or:
 
 
 myarray = (1,2,3)
+# TODO highlight normal and raw arrayindexing in macro face
 normalArrayIndexing:
 	myarray[-1] = 4
 	assert myarray[2] == 4
@@ -241,6 +249,7 @@ teststruct(s)
 print s.x, s.y
 
 
+# TODO highlight { } in bracket face
 new_hash = {'hi':'world'}
 new_hash['foo'] = 'bar'
 
