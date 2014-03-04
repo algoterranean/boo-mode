@@ -1,26 +1,45 @@
-namespace Gorilla
+namespace ExampleSyntax
 
+import System as S
+import System.Drawing from System.Drawing as SD
+# from System.XML import * 
 import System.Collections.Generic
+import System.Linq
 import Boo.Lang.Compiler
-# import Dog # TODO: add thumbs
+import Boo.Lang.Compiler.Steps
+import Boo.Lang.Compiler.MetaProgramming
 
-abstract class Smarty:
+
+
+abstract class Ether:
 	pass
 
-enum Yum:
-	Bananna
-	Greens
-	Poop
 
-struct Paint:
-	actual_color as int
-	gorilla_color as int
+interface Dunno:
+	def Foo()
+	
+
+enum Yum:
+	Chocolate
+	Cookies
+	HotPockets
+
+struct Point:
+	x as single
+	y as single
+	food as Yum
+	def constructor(_x as int, _y as int):
+		x = _x
+		y = _y
+
+
 
 macro PewPewPew:
 """print each statement in the body three times"""
 	for statement in PewPewPew.Body.Statements:
 		s = cast(Ast.ExpressionStatement, statement).Expression as Ast.StringLiteralExpression
-		yield [| print $(s.Value*3) |]
+		yield [| print "$(s.Value * 3)" |]
+
 
 # [Collection(NodeCollection)]
 class Node:
@@ -31,58 +50,197 @@ class Node:
 		return _n
 
 
-class Koko (Smarty):
-"""an
-example 
-class"""
-	food_tastes as Dictionary[of Yum, bool]
-	good_girl = true
-	bff as string
+
+class AThing (Ether):
+"""Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+do eiusmod tempor incididunt ut labore et dolore magna aliqua."""
+	some_food as Dictionary[of Yum, int]
+	eating = false
+	bff = "socks"
+	public at_your_peril as single = 1.0
+
+	[getter(Value)] _value as double
 	
-	FavoriteCat as string:
+	Eating as bool:
 		get:
-			return "KOKO LOVE $(bff)"
+			return eating
+		set:
+			eating = value
+
+	FavoriteCat as string:
 		set:
 			bff = value
+		get:
+			return bff
 
-	[Getter(HotPockets)]
-	secret_word as string
 
-	event FinishedPainting as callable(int)
 
-	def constructor(ego as bool):
-		self.bff = 'Jane'
-		food_tastes = Dictionary[of Yum, bool]()
-		food_tastes[Yum.Poop] = ego
-		not_too_subtle = ("GOOD GIRL YUM YUM" if good_girl else "WOULD LIKE TO KNOW WHY SUCH CAGE")
-		print "ME KOKO KOKO $not_too_subtle"
-		secret_word = "up up down down left right left right a b a b select start"
+	event FinishedEating as callable (bool)
 
-		if secret_word =~ @/select start/:
-			print "99 lives!"
-
-			
-			
-
-		PewPewPew:
-			"playtime"
-
-		FinishedPainting(42)
+	def constructor():
+		some_food = Dictionary[of Yum, int]()
+		some_food[Yum.Cookies] = 20
+		print "Sorry, I am busy eating" if eating
+		
+		FinishedEating(true)
 			
 		
 	def OnYum (y as Yum) as int:
+		if y in some_food:
+			some_food[y] += 1
+			return some_food[y]
 		return 0
 
-	def Meow (s as string) as void:
-		bff = s
+	def Meow ([default("mmmmmeeeeeeeooooowwwwwww")] s as string):
+		print s
 
 
 
 
-k = Koko(true)
-k.FavoriteCat = "socks"
-print k.FavoriteCat + "\n", k.HotPockets
+a = AThing()
+print a.FavoriteCat
+# a.FavoriteCat = "socks the wonder cat"
+# print a.FavoriteCat
+a.Meow(null)
 print Node(Name: "something")
 
-		
-	
+
+# duck typing
+m as duck = AThing()
+print m.FavoriteCat
+
+# generator expressions
+q = [x for x in range(10) if x % 2] # print odd numbers
+print q
+q = [x for x in range(10) unless x % 2] # events
+print q
+
+
+
+# linq
+ints as int* = (of int: 1,2,3,1,2,3)
+print join(ints.Select({i as int | i.ToString("00")}))
+print ints.Aggregate({i, j | i + j})
+
+# regexp
+secret_word = "up up down down left right left right a b a b select start"
+if secret_word =~ @/select start/:
+	print "99 lives!"
+
+# macros
+PewPewPew:
+	"timetoeat!"
+
+# slicing
+l =[1, 2, 3, 4, 5]
+print l[2:]
+print l[0]
+print l[1:3]
+
+# arrays
+foos = array(int, 3)
+for i in range(foos.Length):
+	foos[i] = i
+
+
+# multi-dim arrays
+ab = matrix(int, 3, 3)
+for i in range(0,3):
+	for j in range(0,3):
+		ab[i,j] = i + 3*j
+
+b = ab[0, 1:]
+print b.Length
+print b[0]
+print b[1]
+
+
+
+# hex
+print 0xABC
+# decimal(9)
+print char(52)
+
+
+i = 0
+unchecked:
+	k = i + 1
+checked:
+	k = i + 1
+
+
+
+try:
+	raise System.ArithmeticException()
+except x as System.OverflowException:
+	pass
+except x:
+	print 'caught it'
+ensure:
+	print "now let's move on"
+
+
+
+print typeof((object))
+
+# continue
+# break
+# pass
+
+# goto and labels
+goto exit
+print 'this should never appear'
+:exit
+print "That wasn't so harmful, was it?"
+
+
+
+
+# for or syntax
+for item in []:
+	pass
+or:
+	print 'empty list!'
+then:
+	print "finished"
+
+# # unpacking
+# a, b, c = { i *= 2; print(i); return i }() for i in range(1, 10)
+
+# while
+while true:
+	break
+
+while false:
+	pass
+or:
+	print "immediately got here"
+
+
+myarray = (1,2,3)
+normalArrayIndexing:
+	myarray[-1] = 4
+	assert myarray[2] == 4
+
+try:
+	rawArrayIndexing:
+		myarray[-1] = 5
+except:
+	print 'raw array indexing is working'
+
+# AstAnnotations.MarkRawArrayIndexing(module)	
+
+
+# by reference
+def teststruct(ref s as Point):
+	s.x = 6
+	s.y = 7
+
+s = Point(1, 2)
+teststruct(s)
+print s.x, s.y
+
+
+new_hash = {'hi':'world'}
+new_hash['foo'] = 'bar'
+
