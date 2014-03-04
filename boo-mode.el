@@ -276,7 +276,7 @@ This needs to be defined before the mode has started due to the macro expansion 
      ;; operators
      (list boo-operator-regexp 1 boo-operator-face) ;;nil t)
      ;; import and namesapce references
-     (list (concat "\\(import\\|namespace\\) \\(" boo-valid-name-regexp "\\)") 
+     (list (concat "\\(import\\|namespace\\|from\\) \\(" boo-valid-name-regexp "\\)") 
 	   2 boo-type-face)
      ;; type declarations
      (list (concat "\\<\\(as\\|cast\\|of\\) [[(]*\\(" boo-valid-name-regexp "\\)[])]*") 
@@ -326,7 +326,7 @@ This needs to be defined before the mode has started due to the macro expansion 
      ;; properties
      (list (concat "^[ \t]*\\(" boo-valid-name-regexp "\\) as [(]*\\(" boo-valid-name-regexp "\\)[)]*:") 
 	   1 boo-function-face)
-     (list (concat "\\<\\(Property(\\|Getter(\\|Setter(\\)\\(" boo-valid-name-regexp "\\))") 
+     (list (concat "\\<\\([Pp]roperty(\\|[Gg]etter(\\|[Ss]etter(\\)\\(" boo-valid-name-regexp "\\))") 
 	   2 boo-function-face)
      (list (concat "^[ \t]*\\(" boo-valid-name-regexp "\\) as .*:$")
 	   1 boo-function-face)
