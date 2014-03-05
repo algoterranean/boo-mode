@@ -46,6 +46,22 @@ macro PewPewPew:
 		yield [| print "$(s.Value * 3)" |]
 
 
+# string interpolation
+# x = "$(something)"
+# x = "$(something)"
+# x = "$something"
+# x = $something
+# x = $dict[hi]
+# x = "$something.Y"
+# x = "$something[key]"
+# x = "$(something.Y)"
+# x = "$(something[key])"
+# x = "wonder $xjx.X"
+# x = "$(something * 3)"
+
+
+
+
 # [Collection(NodeCollection)]
 class Node:
 	[Property(Name)]
@@ -205,6 +221,7 @@ for item in []:
 	pass
 or:
 	print 'empty list!'
+# TODO add then syntax
 then:
 	print "finished"
 

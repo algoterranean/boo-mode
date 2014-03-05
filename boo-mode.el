@@ -197,6 +197,7 @@
 ;; ======================================================================
 
 (defvar boo-valid-name-regexp "[A-Za-z_]+[.A-Za-z0-9_]*")
+(defvar boo-valid-standalone-name-regexp "[A-Za-z_]+[A-Za-z0-9_]*")
 
 ;; (defvar boo-operators '("+" "-" "/" "&" "^" "~" "|" "*" "<" ">"
 ;; 			"=" "%" "**" "//" "<<" ">>" "<=" "!="
@@ -291,20 +292,20 @@ This needs to be defined before the mode has started due to the macro expansion 
      (list (concat "[ \t]*\\(" kw4 "\\)[ :]+")
 	   1 boo-macro-face)
      ;; string interpolation
-     '("\$[({]*\\([a-zA-Z0-9_+-\\[]+\\]*\\)[})]*" 
-       1 font-lock-preprocessor-face t)
-
+     (list (concat "\\(\\$\\)\\(" boo-valid-standalone-name-regexp "\\)")
+	   '(1 font-lock-string-face t)
+	   '(2 font-lock-preprocessor-face t))
+     (list (concat "\\(\\$\\)(\\(" ".+" "\\))")
+	   '(1 font-lock-string-face t)
+	   '(2 font-lock-preprocessor-face t))
 
      ;; delegates
      (list (concat "\\<as callable *(\\(\\(" boo-valid-name-regexp "[, ]*\\)+\\)" )
      	   1 boo-type-face)
 
-
-
-
      ;; ;; comments should override string interpolation
-     ;; ;; (font lock regexps are run in order listed here)
-     ;; '("#.*$" 0 boo-comment-face t)
+     ;; ;; (font lock regexps are executed in order listed here)
+     '("#.*$" 0 boo-comment-face t)
 
      ;; C-style comments 
      ;; TODO: multi-line comments
