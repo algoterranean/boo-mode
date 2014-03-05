@@ -210,7 +210,8 @@
 
 
 (defvar boo-macros
-  '("assert" "using" "lock" "debug" "print"))
+  '("assert" "using" "lock" "debug" "print" 
+    "unchecked" "checked" "normalArrayIndexing" "rawArrayIndexing"))
 
 (defvar boo-custom-macros '()
   "A list of keywords for custom macros that require syntax highlighting and indentation. 
@@ -237,7 +238,7 @@ This needs to be defined before the mode has started due to the macro expansion 
 			  ;; exceptions
 			  "try" "except" "ensure" "raise"
 			  ;; logic/control
-			  "if" "elif" "else" "unless" "or" "and"
+			  "if" "elif" "else" "unless" "or" "and" "then"
 			  ;; loops/control
 			  "for" "while"
 			  "break" "continue" "pass" "return" "yield"

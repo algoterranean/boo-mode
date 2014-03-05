@@ -42,7 +42,6 @@ macro PewPewPew:
 """print each statement in the body three times"""
 	for statement in PewPewPew.Body.Statements:
 		s = cast(Ast.ExpressionStatement, statement).Expression as Ast.StringLiteralExpression
-		# TODO all string interpolation should be in the same face (as s.Value)
 		yield [| print "$(s.Value * 3)" |]
 
 
@@ -182,7 +181,6 @@ print char(52)
 
 
 i = 0
-# TODO highlist checked/unchecked in macro face
 unchecked:
 	k = i + 1
 checked:
@@ -221,7 +219,6 @@ for item in []:
 	pass
 or:
 	print 'empty list!'
-# TODO add then syntax
 then:
 	print "finished"
 
@@ -239,7 +236,6 @@ or:
 
 
 myarray = (1,2,3)
-# TODO highlight normal and raw arrayindexing in macro face
 normalArrayIndexing:
 	myarray[-1] = 4
 	assert myarray[2] == 4
