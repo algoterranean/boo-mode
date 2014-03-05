@@ -109,7 +109,6 @@ print Node(Name: "something")
 
 
 # duck typing
-# TODO highlight duck in type face?
 m as duck = AThing()
 print m.FavoriteCat
 

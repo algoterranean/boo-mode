@@ -228,7 +228,7 @@ This needs to be defined before the mode has started due to the macro expansion 
 			  "public" "protected" "internal" "private" "abstract"
 			  "final" "static" "override" "partial" "virtual"
 			  ;; references and types
-			  "cast" "ref" "of" "as" "duck"
+			  "cast" "ref" "of" "as" ;; "duck"
 			  ;; delegates
 			  "event" "callable" "do"
 			  ;; special class refsa
@@ -293,7 +293,6 @@ This needs to be defined before the mode has started due to the macro expansion 
      ;; string interpolation
      '("\$[({]*\\([a-zA-Z0-9_+-\\[]+\\]*\\)[})]*" 
        1 font-lock-preprocessor-face t)
-
 
 
      ;; delegates
