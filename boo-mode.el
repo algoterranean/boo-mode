@@ -279,7 +279,7 @@ This needs to be defined before the mode has started due to the macro expansion 
      (list (concat "\\(import\\|namespace\\|from\\) \\(" boo-valid-name-regexp "\\)") 
 	   2 boo-type-face)
      ;; type declarations
-     (list (concat "\\<\\(as\\|cast\\|of\\) [[(]*\\(" boo-valid-name-regexp "\\)[])]*") 
+     (list (concat "\\<\\(as\\|cast\\|of\\)[[ (]+\\(" boo-valid-name-regexp "\\)[])]*") 
 	   2 boo-type-face)
      ;; types in arrays and matrix
      (list (concat "\\(array\\|matrix\\)(\\(" boo-valid-name-regexp "+\\),") 

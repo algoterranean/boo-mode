@@ -41,7 +41,6 @@ macro PewPewPew:
 # TODO indentation for doc string is not correct
 """print each statement in the body three times"""
 	for statement in PewPewPew.Body.Statements:
-		# TODO: Ast.ExpressionStatement should be highlighted in type face
 		s = cast(Ast.ExpressionStatement, statement).Expression as Ast.StringLiteralExpression
 		# TODO all string interpolation should be in the same face (as s.Value)
 		yield [| print "$(s.Value * 3)" |]
