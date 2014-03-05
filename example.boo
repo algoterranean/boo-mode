@@ -247,7 +247,6 @@ teststruct(s)
 print s.x, s.y
 
 
-# TODO highlight { } in bracket face
 new_hash = {'hi':'world'}
 new_hash['foo'] = 'bar'
 

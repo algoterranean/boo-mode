@@ -320,7 +320,7 @@ This needs to be defined before the mode has started due to the macro expansion 
      ;;   1 boo-warning-face)
 
      ;; ;; brackets and parens
-     '("\\([\\\[()]\\|]\\)" 
+     '("\\([\\\[({)}]\\|]\\)" 
        1 boo-builtin-face)
 
      ;; properties
