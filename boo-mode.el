@@ -232,7 +232,7 @@ This needs to be defined before the mode has started due to the macro expansion 
 			  ;; delegates
 			  "event" "callable" "do"
 			  ;; special class refsa
-			  "self" "super" "constructor" "destructor"
+			  "self" "super" ;; "constructor" "destructor"
 			  ;; exceptions
 			  "try" "except" "ensure" "raise"
 			  ;; logic/control
@@ -285,7 +285,7 @@ This needs to be defined before the mode has started due to the macro expansion 
      (list (concat "\\(array\\|matrix\\)(\\(" boo-valid-name-regexp "+\\),") 
 	   2 boo-type-face)
      ;; declaration names
-     '("\\<\\(def\\|class\\|interface\\|struct\\|enum\\|callable\\|macro\\)[ \t]+\\([a-zA-Z_]+[a-zA-Z0-9_]*\\)" 
+     '("\\<\\(def\\|class\\|interface\\|struct\\|enum\\|callable\\|macro\\|constructor\\|destructor\\)[ \t]+\\([a-zA-Z_]+[a-zA-Z0-9_]*\\)" 
        2 boo-function-face)
      ;; macros
      (list (concat "[ \t]*\\(" kw4 "\\)[ :]+")

@@ -31,8 +31,7 @@ struct Point:
 	y as single
 	food as Yum
 
-	# TODO should constructor be highlighted in function face?
-	def constructor(_x as int, _y as int):
+	def constructor (_x as int, _y as int):
 		x = _x
 		y = _y
 
