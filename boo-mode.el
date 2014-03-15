@@ -220,10 +220,13 @@
   '("assert" "using" "lock" "debug" "print" 
     "unchecked" "checked" "normalArrayIndexing" "rawArrayIndexing"))
 
+(defvar boo-macro-blocks
+  '("using" "lock" 
+    "unchecked" "checked" "normalArrayIndexing" "rawArrayIndexing"))
+
 (defvar boo-custom-macros '()
   "A list of keywords for custom macros that require syntax highlighting and indentation. 
 This needs to be defined before the mode has started due to the macro expansion involved.")
-
 
 
 
@@ -372,6 +375,8 @@ This needs to be defined before the mode has started due to the macro expansion 
 	  (mapconcat 'identity boo-default-block-start-keywords "\\|")
 	  "\\|"
 	  (mapconcat 'identity boo-custom-macros "\\|")
+	  "\\|"
+	  (mapconcat 'identity boo-macro-blocks "\\|")	  
 	  "\\)\\)\\_>"))
 
 
