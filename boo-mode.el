@@ -271,10 +271,10 @@ This needs to be defined before the mode has started due to the macro expansion 
 			"\\|"))
 	)
     
-   
+
     (list
      ;; keywords
-     (list (concat "\\<\\(" kw1 "\\)\\>") 
+     (list (concat "\\_<\\(" kw1 "\\)\\_>") 
 	   1 boo-decorators-face)
      ;; builtins when they don't appear as object attributes
      (list (concat "\\([^. \t]\\|^\\)[ \t]*\\<\\(" kw2 "\\)\\>") 
