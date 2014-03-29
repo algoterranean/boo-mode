@@ -306,7 +306,7 @@ This needs to be defined before the mode has started due to the macro expansion 
      (list (concat "\\(\\$\\)\\(" boo-valid-standalone-name-regexp "\\)")
 	   '(1 font-lock-string-face t)
 	   '(2 font-lock-preprocessor-face t))
-     (list (concat "\\(\\$\\)(\\(" ".+" "\\))")
+     (list (concat "\\(\\$\\)(\\(" ".+?" "\\))[^)]")
 	   '(1 font-lock-string-face t)
 	   '(2 font-lock-preprocessor-face t))
 
@@ -348,8 +348,9 @@ This needs to be defined before the mode has started due to the macro expansion 
      (list (concat "^[ \t]*:\\(" boo-valid-name-regexp "\\)[ \t]*$")
 	   1 boo-function-face)
 
-     ;; add attribute support
-     
+     ;; attributes
+     (list (concat "^[ \t]*\\[\\("boo-valid-name-regexp "\\).*]$")
+	   1 boo-type-face)
      ;; assembly attributes
      (list (concat "^\\[\\(assembly\\):")
 	   1 boo-decorators-face)
