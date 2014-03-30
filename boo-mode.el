@@ -1,6 +1,5 @@
 
 
-
 ;; Contents
 ;; =====================================================================
 ;; 0. Overview and license 
@@ -19,11 +18,11 @@
 ;; =====================================================================
 ;;  This is an emacs major mode for the Boo programming language. 
 ;;  For more info on boo, see <http://boo.codehaus.org>.
- 
+
 ;;  "Boo is an object oriented statically typed language for .NET and Mono
 ;;   with a python-inspired syntax and a special focus on metaprogramming
 ;;   through language and compiler extensibility."
- 
+
 ;;  For this reason, this mode derives from python.el (python.el "Gallina").
 ;;  It is doubtful any other python mode will work with boo-mode due to the 
 ;;  use of and dependence on the indentation features of python.el.
@@ -41,7 +40,7 @@
 ;;  First, you will need python.el:
 ;;  <https://github.com/fgallina/python.el>. This mode derives from it
 ;;  and depends on its particular manner of handling syntax indentation.
- 
+
 ;;  Put this file in your load path and put (require 'boo-mode) in your .emacs.
 ;;  You may, of course, hook into the boo-mode hook if you wish, and you will
 ;;  want to define the autoload stuff. For example:
@@ -53,18 +52,18 @@
 ;; 
 
 
- 
+
 ;; ## Customization:
 ;; =====================================================================
 ;; + The faces are exposed if you wish to customize them.
- 
+
 ;; + You can define your own keywords that need syntax highlighting and 
 ;;    indentation (read: your custom macros!). HOWEVER you will need to 
 ;;    define the boo-custom-macro variable BEFORE you load this mode. 
 ;;    This is due to some rather hackish macro expansion stuff that 
 ;;    has been derived from python.el. See the example under
 ;;    Installation, above.
-       
+
 
 ;; ## TODO:
 ;; =====================================================================
@@ -122,9 +121,15 @@
 ;; 3. Faces
 ;; ======================================================================
 
+(defface boo-braces-face
+  '((t (:inherit c-annotation-face)))
+  "Braces, parens, etc."
+  :group 'boo)
+(defvar boo-braces-face 'boo-braces-face)
+
 
 (defface boo-builtin-face 
-  '((t (:inherit font-lock-builtin-face)))
+  '((t (:inherit font-lock-builtins-face)))
   "Face for builtins like TypeError, object, open, and exec." 
   :group 'boo)
 (defvar boo-builtin-face 'boo-builtin-face)
@@ -160,7 +165,7 @@
 ;; (defvar boo-pseudo-keyword-face 'boo-pseudo-keyword-face)
 
 (defface boo-macro-face
-  '((t (:inherit font-lock-builtin-face)))
+  '((t (:inherit font-lock-keyword-face)))
   "Face for builtins like TypeError, object, open, and exec." 
   :group 'boo)
 (defvar boo-macro-face 'boo-macro-face)
@@ -332,7 +337,7 @@ This needs to be defined before the mode has started due to the macro expansion 
 
      ;; ;; brackets and parens
      '("\\([\\\[({)}]\\|]\\)" 
-       1 boo-builtin-face)
+       1 boo-braces-face)
 
      ;; properties
      (list (concat "^[ \t]*\\(" boo-valid-name-regexp "\\) as [(]*\\(" boo-valid-name-regexp "\\)[)]*:") 
@@ -350,7 +355,7 @@ This needs to be defined before the mode has started due to the macro expansion 
 
      ;; attributes
      (list (concat "^[ \t]*\\[\\("boo-valid-name-regexp "\\).*]$")
-	   1 boo-type-face)
+		   1 boo-type-face)
      ;; assembly attributes
      (list (concat "^\\[\\(assembly\\):")
 	   1 boo-decorators-face)
@@ -358,7 +363,7 @@ This needs to be defined before the mode has started due to the macro expansion 
 	   1 boo-type-face)
      
      )
-))
+    ))
 
 
 
@@ -423,7 +428,7 @@ This needs to be defined before the mode has started due to the macro expansion 
 				  (group (or  "\"" "\"\"\"" "'" "'''"))))))
       )
 
-  
+
 
 (defmacro python-rx (&rest regexps)
   "Python mode specialized rx macro.
@@ -718,7 +723,7 @@ START is the buffer position where the sexp starts."
   (setq indent-tabs-mode t)
   (setq tab-width 4)
   (run-hooks 'boo-mode-hook)
-)
+  )
 
 
 (provide 'boo-mode)
