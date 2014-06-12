@@ -223,11 +223,11 @@
 
 (defvar boo-macros
   '("assert" "using" "lock" "debug" "print" 
-    "unchecked" "checked" "normalArrayIndexing" "rawArrayIndexing"))
+    "unchecked" "checked" "normalArrayIndexing" "rawArrayIndexing" "ifdef"))
 
 (defvar boo-macro-blocks
   '("using" "lock" 
-    "unchecked" "checked" "normalArrayIndexing" "rawArrayIndexing"))
+    "unchecked" "checked" "normalArrayIndexing" "rawArrayIndexing" "ifdef"))
 
 (defvar boo-custom-macros '()
   "A list of keywords for custom macros that require syntax highlighting and indentation. 
